@@ -2,7 +2,7 @@ import dbConnect from "@/lib/dbConnect";
 import UserModel from "@/models/User";
 import bcrypt from "bcryptjs";
 
-import { sendVerificationEmail } from "@/helpers/sendVerificationEmail";
+import { sendVerificationEmail } from "@/utils/sendVerificationEmail";
 
 export async function POST(req: Request) {
   await dbConnect();
