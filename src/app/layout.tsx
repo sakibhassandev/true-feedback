@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import Navbar from "@/components/Navbar";
+import "./globals.css";
+import AuthProvider from "@/contexts/AuthProvider";
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -13,10 +15,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={` antialiased`}>
-        <Navbar />
-        {children}
-      </body>
+      <AuthProvider>
+        <body className={` antialiased`}>
+          {children}
+          <Toaster />
+        </body>
+      </AuthProvider>
     </html>
   );
 }
