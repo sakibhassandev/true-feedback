@@ -11,7 +11,7 @@ export async function GET(req: Request) {
   const session = await getServerSession(authOptions);
   const user = session?.user as User;
 
-  if (!session || session.user) {
+  if (!session || !session.user) {
     return Response.json(
       {
         success: false,
@@ -29,6 +29,7 @@ export async function GET(req: Request) {
       { $sort: { "messages.createdAt": -1 } },
       { $group: { _id: "$_id", messages: { $push: "$messages" } } },
     ]);
+
     if (!user || user.length === 0) {
       return Response.json(
         {
